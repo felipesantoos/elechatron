@@ -2,15 +2,15 @@ function getPaths() {
 
     const startPath = __dirname + "../../../";
 
-    const mainFile = "/src/ui/pages/main.html";
-    const commentFile = "/src/ui/pages/addComment.html";
+    const homeFile = "/src/ui/pages/HomePage.html";
+    const commentFile = "/src/ui/pages/CommentPage.html";
 
-    const mainPath =  startPath + mainFile;
+    const homePath =  startPath + homeFile;
     const commentPath = startPath + commentFile;
 
     const paths = {
-        "main": mainPath,
-        "comment": commentPath,
+        "homePage": homePath,
+        "commentPage": commentPath,
     };
 
     return paths;

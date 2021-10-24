@@ -1,28 +1,27 @@
-form#form-add-comment {
+form#form-comment-page {
     padding: 0.75rem 1rem;
 
     display: flex;
     flex-direction: column;
 }
 
-form#form-add-comment * {
+form#form-comment-page * {
     display: inline-block;
 }
 
-form#form-add-comment label {
+form#form-comment-page label {
     margin-bottom: 0.75rem;
 }
 
-form#form-add-comment textarea {
+form#form-comment-page textarea {
     padding: 0.5rem;
 }
 
-form#form-add-comment button {
+form#form-comment-page button {
     width: max-content;
+    padding: 0.25rem 0.5rem;
 
     align-self: flex-end;
     position: absolute;
     bottom: 1rem;
-
-    padding: 0.25rem 0.5rem;
 }

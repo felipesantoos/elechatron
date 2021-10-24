@@ -1,7 +1,7 @@
 const electron = require("electron");
-const { getMenuTemplate } = require("./src/ui/parts/menuTemplate");
-const { getCommentWindow } = require("./src/ui/windows/commentWindow");
-const { getPaths, paths } = require("./src/utils/paths");
+const { getMenuTemplate } = require("./src/ui/parts/MenuTemplate");
+const { getCommentWindow } = require("./src/ui/windows/CommentWindow");
+const { paths } = require("./src/utils/paths");
 
 const { app, BrowserWindow, Menu } = electron;
 
@@ -10,7 +10,8 @@ let menuTemplate;
 
 app.on("ready", () => {
     mainWindow = new BrowserWindow({});
-    mainWindow.loadFile(paths.main);
+    mainWindow.loadFile(paths.homePage);
+    mainWindow.on("closed", () => app.quit());
     
     menuTemplate = getMenuTemplate(app, getCommentWindow);
     const mainMenu = Menu.buildFromTemplate(menuTemplate);

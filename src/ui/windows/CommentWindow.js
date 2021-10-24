@@ -8,7 +8,7 @@ function getCommentWindow() {
         title: "Adicionar comentário",
     });
 
-    commentWindow.loadFile(paths.comment);
+    commentWindow.loadFile(paths.commentPage);
 
     return commentWindow;
 }

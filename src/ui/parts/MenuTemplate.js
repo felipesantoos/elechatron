@@ -25,15 +25,31 @@ function getMenuTemplate(app, getCommentWindow) {
         menuTemplate.unshift({});
     }
 
-    function defAccelerator(shortcutWinx, shortcutMac) {
-        if (process.platform === "win32" || process.platform === "linux") {
-            return shortcutWinx;
-        } else {
-            return shortcutMac;
-        }
+    if (process.env.NODE_ENV !== "production") {
+        // development, production e test.
+        menuTemplate.push({
+            label: "Development",
+            submenu: [
+                {
+                    label: "Toggle Developer Tools",
+                    accelerator: defAccelerator("Ctrl+Shift+I", "Cmd+Alt+I"),
+                    click(item, focusedWindow) {
+                        focusedWindow.toggleDevTools();
+                    },
+                },
+            ],
+        });
     }
 
     return menuTemplate;
+}
+
+function defAccelerator(shortcutWinx, shortcutMac) {
+    if (process.platform === "win32" || process.platform === "linux") {
+        return shortcutWinx;
+    } else {
+        return shortcutMac;
+    }
 }
 
 module.exports.getMenuTemplate = getMenuTemplate;
