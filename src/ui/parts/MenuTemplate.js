@@ -1,4 +1,4 @@
-function getMenuTemplate(app, getCommentWindow) {
+function getMenuTemplate(app, commentWindow) {
     const menuTemplate = [
         {
             label: "Opções",
@@ -7,7 +7,8 @@ function getMenuTemplate(app, getCommentWindow) {
                     label: "Adicionar comentário",
                     accelerator: defAccelerator("Ctrl+N", "Cmd+N"),
                     click() {
-                        getCommentWindow();
+                        commentWindow.create();
+                        commentWindow.load();
                     },
                 },
                 {

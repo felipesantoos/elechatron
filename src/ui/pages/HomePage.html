@@ -13,7 +13,18 @@
 <body>
     <div id="home-page">
         <h1>Comentários</h1>
+        <div id="comments"></div>
     </div>
 </body>
+
+<script>
+    const electron = require("electron");
+    const { ipcRenderer } = electron;
+
+    ipcRenderer.on("addComment", (event, value) => {
+        var comment = document.createTextNode(value);
+        document.querySelector("#comments").appendChild(comment);
+    });
+</script>
 
 </html>

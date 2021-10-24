@@ -1,19 +1,28 @@
 const electron = require("electron");
 const { getMenuTemplate } = require("./src/ui/parts/MenuTemplate");
-const { getCommentWindow } = require("./src/ui/windows/CommentWindow");
-const { paths } = require("./src/utils/paths");
+const commentWindow = require("./src/ui/windows/CommentWindow");
+const homeWindow = require("./src/ui/windows/HomeWindow");
 
-const { app, BrowserWindow, Menu } = electron;
+const { app, Menu, ipcMain } = electron;
 
-let mainWindow;
+let homeApp;
 let menuTemplate;
 
 app.on("ready", () => {
-    mainWindow = new BrowserWindow({});
-    mainWindow.loadFile(paths.homePage);
-    mainWindow.on("closed", () => app.quit());
+    homeWindow.create();
+    homeWindow.load();
+    homeApp = homeWindow.get();
     
-    menuTemplate = getMenuTemplate(app, getCommentWindow);
+    menuTemplate = getMenuTemplate(app, commentWindow);
     const mainMenu = Menu.buildFromTemplate(menuTemplate);
     Menu.setApplicationMenu(mainMenu);
+});
+
+ipcMain.on("addComment", (event, value) => {
+    commentWindow.quit();
+    homeApp.webContents.send("addComment", value);
+});
+
+ipcMain.on("closeAllWindows", (event) => {
+    app.quit();
 });

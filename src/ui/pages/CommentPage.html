@@ -15,4 +15,17 @@
         <button type="submit">Enviar</button>
     </form>
 </body>
+
+<script>
+    const electron = require("electron");
+    const { ipcRenderer } = electron;
+    
+    document.querySelector("form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        // debugger;
+        const { value } = document.querySelector("textarea");
+        ipcRenderer.send("addComment", value);
+    });
+</script>
+
 </html>

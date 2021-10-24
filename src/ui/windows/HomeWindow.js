@@ -1,34 +1,32 @@
 const electron = require("electron");
-const { BrowserWindow } = electron;
+const { BrowserWindow, ipcMain } = electron;
 const { paths } = require("../../utils/paths");
 
-let commentWindow;
+let homeWindow;
 
 function create() {
-    commentWindow = new BrowserWindow({
-        width: 500,
-        height: 300,
-        title: "Adicionar comentário",
+    homeWindow = new BrowserWindow({
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
         },
     });
+
+    homeWindow.on("close", () => closeAllWindows());
 }
 
 function load() {
-    commentWindow.loadFile(paths.commentPage);
+    homeWindow.loadFile(paths.homePage);
 }
 
 function get() {
-    return commentWindow;
+    return homeWindow;
 }
 
-function quit() {
-    commentWindow.close();
+function closeAllWindows() {
+    ipcMain.emit("closeAllWindows");
 }
 
 module.exports.create = create;
 module.exports.load = load;
 module.exports.get = get;
-module.exports.quit = quit;
