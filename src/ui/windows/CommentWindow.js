@@ -26,9 +26,17 @@ function get() {
 
 function quit() {
     commentWindow.close();
+    commentWindow = null;
+}
+
+function setMenu() {
+    if (process.platform !== "darwin") {
+        commentWindow.setMenu(null);
+    }
 }
 
 module.exports.create = create;
 module.exports.load = load;
 module.exports.get = get;
 module.exports.quit = quit;
+module.exports.setMenu = setMenu;

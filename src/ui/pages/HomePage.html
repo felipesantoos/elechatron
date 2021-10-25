@@ -22,8 +22,10 @@
     const { ipcRenderer } = electron;
 
     ipcRenderer.on("addComment", (event, value) => {
-        var comment = document.createTextNode(value);
-        document.querySelector("#comments").appendChild(comment);
+        var p = document.createElement("p");
+        var text = document.createTextNode(value);
+        p.appendChild(text);
+        document.querySelector("#comments").appendChild(p);
     });
 </script>
 

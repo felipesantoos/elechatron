@@ -9,6 +9,7 @@ function getMenuTemplate(app, commentWindow) {
                     click() {
                         commentWindow.create();
                         commentWindow.load();
+                        commentWindow.setMenu();
                     },
                 },
                 {
@@ -31,6 +32,9 @@ function getMenuTemplate(app, commentWindow) {
         menuTemplate.push({
             label: "Development",
             submenu: [
+                {
+                    role: "reload"
+                },
                 {
                     label: "Toggle Developer Tools",
                     accelerator: defAccelerator("Ctrl+Shift+I", "Cmd+Alt+I"),
