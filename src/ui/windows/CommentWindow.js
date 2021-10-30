@@ -1,6 +1,7 @@
 const electron = require("electron");
-const { BrowserWindow } = electron;
+const { BrowserWindow, Menu } = electron;
 const { paths } = require("../../utils/paths");
+const { menuDeveloper } = require("../parts/MenuTemplate");
 
 let commentWindow;
 
@@ -31,7 +32,8 @@ function quit() {
 
 function setMenu() {
     if (process.platform !== "darwin") {
-        commentWindow.setMenu(null);
+        // commentWindow.setMenu(null);
+        commentWindow.setMenu(Menu.buildFromTemplate([menuDeveloper]));
     }
 }
 
